@@ -16,13 +16,15 @@
     "post-build": "echo 'spell checking, link checking, formatting'",
     "build-pages": "yarn build && node ./scripts/redirects-generate.js",
     "next": "next",
-    "spell": "cspell \"**\""
+    "postinstall": "husky",
+    "spell": "cspell \"**\" --show-suggestions"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^18.11.19",
     "@types/react": "18.2.61",
     "cspell": "^8.8.4",
+    "husky": "^9.1.6",
     "typescript": "^4.9.5"
   },
   "license": "CC-BY-4.0",
