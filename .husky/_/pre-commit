@@ -1,15 +1,9 @@
 #!/usr/bin/env sh
 
-npm run spell
+STAGED=$(git diff --cached --name-only)
 
-UNSTAGED=$(git diff --name-only)
-
-if [ -n "$UNSTAGED" ]; then
-    echo "❌ Commit failed: You have unstaged changes in the following files:"
-    echo "$UNSTAGED"
-    echo "Please stage the changes or stash them before committing."
-    exit 1
-fi
+echo "Running cspell on staged files..."
+echo "$STAGED" | xargs ./node_modules/.bin/cspell --show-suggestions
 
 if [ $? -ne 0 ]; then
     echo "❌ Commit failed: Spelling errors detected by cspell."
